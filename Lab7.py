@@ -1,5 +1,8 @@
 from gfxhat import lcd
+from gfxhat import backlight
 
+backlight.set_all(190,190,190)
+backlight.show()
 lcd.clear()
 lcd.show()
 
@@ -22,11 +25,7 @@ def displayObject(obj, x, y):
             if j == 1:
                 lcd.set_pixel(positionx, positiony, 1)
             positionx += 1
-            if positionx > 127:
-                break
-        positiony+=1
-        if positiony > 63:
-            break
+        positiony += 1
         positionx = x
     lcd.show()
 
@@ -38,11 +37,7 @@ def deleteObject(obj, x=0, y=0):
             if j == 1:
                 lcd.set_pixel(positionx, positiony, 0)
             positionx += 1
-            if positionx > 127:
-                break
         positiony+=1
-        if positiony > 63:
-            break
         positionx = x
     lcd.show()
 
@@ -84,8 +79,6 @@ ySpeed = 1
 
 while True:
     deleteObject(ball, x=xValue, y=yValue)
-
-    moveObject(ball, x=xValue, y=yValue, vx=xSpeed, vy=ySpeed)
 
     moveReturn = moveObject(ball, x=xValue, y=yValue, vx=xSpeed, vy=ySpeed)
     xValue = moveReturn[0]
